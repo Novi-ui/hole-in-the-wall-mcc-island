@@ -1,0 +1,436 @@
+# Hole in the Wall - MCC Style Plugin Configuration
+# Complete configuration for all plugin features
+
+# ========================================
+# GENERAL SETTINGS
+# ========================================
+general:
+  # Plugin language (for future localization)
+  language: "en"
+  # Debug mode for detailed logging
+  debug: false
+  # Check for plugin updates
+  update-checker: true
+  # Plugin prefix for messages
+  prefix: "&8[&cHiTW&8] "
+
+# ========================================
+# GAME SETTINGS
+# ========================================
+game:
+  # Player limits per game
+  min-players: 2
+  max-players: 20
+  
+  # Game timing
+  auto-start: true
+  countdown-time: 30  # seconds
+  max-duration: 300   # seconds (5 minutes)
+  
+  # Lobby settings
+  lobby-countdown: 10
+  force-start-time: 5
+  
+  # Game modes
+  modes:
+    classic:
+      enabled: true
+      description: "Classic Hole in the Wall gameplay"
+    lightning:
+      enabled: true
+      description: "Faster walls and increased difficulty"
+      speed-multiplier: 2.0
+    double:
+      enabled: true
+      description: "Two walls at once"
+    chaotic:
+      enabled: true
+      description: "Random patterns and unpredictable movement"
+
+# ========================================
+# WALL GENERATION
+# ========================================
+walls:
+  # Wall patterns by difficulty
+  patterns:
+    basic:
+      - "simple_cross"
+      - "single_hole"
+      - "double_hole"
+      - "triple_hole"
+      - "side_holes"
+    advanced:
+      - "zigzag"
+      - "spiral"
+      - "random_holes"
+      - "checker_pattern"
+      - "diagonal_line"
+    expert:
+      - "complex_maze"
+      - "shifting_holes"
+      - "rotating_pattern"
+      - "fractal_holes"
+      - "dynamic_maze"
+  
+  # Wall movement settings
+  movement:
+    base-speed: 2.0
+    speed-increment: 0.2
+    max-speed: 8.0
+    direction-change-chance: 0.1
+  
+  # Wall generation timing
+  generation:
+    base-interval: 3.0  # seconds
+    min-interval: 1.0
+    interval-decrease: 0.1
+  
+  # Wall appearance
+  appearance:
+    material: "RED_CONCRETE"
+    hole-material: "AIR"
+    wall-height: 5
+    wall-width: 7
+    thickness: 1
+
+# ========================================
+# DIFFICULTY PROGRESSION
+# ========================================
+difficulty:
+  progressive: true
+  
+  # Special mode activation rounds
+  special-modes:
+    lightning:
+      activate-round: 10
+      speed-multiplier: 2.0
+    double:
+      activate-round: 15
+      wall-count: 2
+    chaotic:
+      activate-round: 20
+      randomness: 0.5
+  
+  # Progressive changes
+  progression:
+    speed-increase-per-round: 0.2
+    pattern-complexity-increase: true
+    hole-size-decrease: true
+    
+  # Round thresholds for pattern changes
+  pattern-thresholds:
+    basic-to-advanced: 5
+    advanced-to-expert: 10
+
+# ========================================
+# SCORING SYSTEM
+# ========================================
+scoring:
+  # Base points
+  base-points:
+    survival-per-second: 10
+    wall-dodge: 50
+    perfect-dodge: 100
+  
+  # Bonus multipliers
+  bonuses:
+    streak-multiplier: 1.5
+    risk-bonus: 2.0      # For close dodges
+    clutch-bonus: 3.0    # For last-second dodges
+    perfect-game: 1000   # For zero collisions
+  
+  # Daily bonuses
+  daily:
+    first-win-bonus: 500
+    participation-bonus: 100
+    win-streak-multiplier: 1.2
+
+# ========================================
+# REWARDS SYSTEM
+# ========================================
+rewards:
+  # Currency rewards (requires Vault)
+  currency:
+    enabled: true
+    base-reward: 100
+    win-bonus: 500
+    top-3-bonus: [1000, 500, 250]
+  
+  # Experience rewards
+  experience:
+    enabled: true
+    base-exp: 50
+    win-bonus-exp: 200
+    survival-exp-per-second: 5
+  
+  # Command rewards
+  commands:
+    enabled: false
+    win-commands:
+      - "give %player% diamond 1"
+    participation-commands:
+      - "give %player% iron_ingot 1"
+
+# ========================================
+# ARENA SYSTEM
+# ========================================
+arena:
+  # Default arena settings
+  default:
+    platform-size: 15
+    platform-material: "STONE"
+    barrier-height: 10
+    spawn-protection: 3  # seconds
+  
+  # Arena validation
+  validation:
+    check-world-load: true
+    check-spawn-safety: true
+    min-platform-size: 10
+    max-platform-size: 30
+  
+  # Multi-arena support
+  multi-arena:
+    enabled: true
+    max-arenas: 10
+    auto-create-on-start: false
+
+# ========================================
+# PLAYER MANAGEMENT
+# ========================================
+player:
+  # Inventory handling
+  inventory:
+    save-on-join: true
+    restore-on-leave: true
+    clear-on-join: true
+  
+  # Movement validation
+  movement:
+    anti-cheat: true
+    boundary-checking: true
+    teleport-protection: true
+  
+  # Pose detection
+  poses:
+    detect-crouch: true
+    detect-prone: true
+    hitbox-adjustment: true
+  
+  # Player limits
+  limits:
+    max-games-per-day: 50
+    cooldown-between-games: 30  # seconds
+
+# ========================================
+# EFFECTS SYSTEM
+# ========================================
+effects:
+  # Visual effects
+  particles:
+    enabled: true
+    collision-particles: "EXPLOSION_LARGE"
+    warning-particles: "VILLAGER_ANGRY"
+    success-particles: "VILLAGER_HAPPY"
+    max-particles: 50
+  
+  # Sound effects
+  sounds:
+    enabled: true
+    collision-sound: "ENTITY_GENERIC_EXPLODE"
+    warning-sound: "BLOCK_NOTE_BLOCK_PLING"
+    success-sound: "ENTITY_PLAYER_LEVELUP"
+    countdown-sound: "BLOCK_NOTE_BLOCK_BELL"
+    volume: 1.0
+    pitch: 1.0
+  
+  # Knockback effects
+  knockback:
+    enabled: true
+    collision-knockback: 2.0
+    direction-based: true
+
+# ========================================
+# WARNING SYSTEM
+# ========================================
+warnings:
+  # Wall approach warnings
+  wall-approach:
+    enabled: true
+    distance-threshold: 5
+    warning-interval: 1.0  # seconds
+  
+  # Boundary warnings
+  boundary:
+    enabled: true
+    distance-from-edge: 2
+    warning-message: "&cStay within the platform!"
+
+# ========================================
+# DATABASE SETTINGS
+# ========================================
+database:
+  # Database type: sqlite or mysql
+  type: "sqlite"
+  
+  # SQLite settings
+  sqlite:
+    file: "hitw_data.db"
+  
+  # MySQL settings
+  mysql:
+    host: "localhost"
+    port: 3306
+    database: "hitw"
+    username: "hitw_user"
+    password: "hitw_password"
+    
+  # Connection pool settings
+  pool:
+    maximum-pool-size: 10
+    minimum-idle: 2
+    connection-timeout: 30000
+    idle-timeout: 600000
+    max-lifetime: 1800000
+
+# ========================================
+# STATISTICS TRACKING
+# ========================================
+statistics:
+  # What to track
+  tracking:
+    games-played: true
+    games-won: true
+    total-time-survived: true
+    walls-dodged: true
+    best-score: true
+    win-streak: true
+    achievements: true
+  
+  # Leaderboards
+  leaderboards:
+    enabled: true
+    update-interval: 300  # seconds
+    display-count: 10
+    
+  # Data retention
+  retention:
+    keep-detailed-history: true
+    history-retention-days: 365
+    cleanup-interval: 86400  # seconds (daily)
+
+# ========================================
+# INTEGRATION SETTINGS
+# ========================================
+integrations:
+  # Vault economy
+  vault:
+    enabled: true
+    currency-symbol: "$"
+  
+  # PlaceholderAPI
+  placeholderapi:
+    enabled: true
+    register-placeholders: true
+  
+  # Citizens NPCs
+  citizens:
+    enabled: true
+    tutorial-npc: true
+    stats-npc: true
+  
+  # HolographicDisplays
+  holographic-displays:
+    enabled: true
+    leaderboard-holograms: true
+    stats-holograms: true
+  
+  # WorldEdit
+  worldedit:
+    enabled: true
+    arena-creation: true
+    selection-tools: true
+
+# ========================================
+# PERFORMANCE SETTINGS
+# ========================================
+performance:
+  # Chunk loading
+  chunk-loading:
+    preload-arena-chunks: true
+    keep-chunks-loaded: true
+    
+  # Caching
+  caching:
+    cache-wall-patterns: true
+    cache-player-data: true
+    cache-statistics: true
+    cache-duration: 300  # seconds
+  
+  # Thread management
+  threads:
+    async-database: true
+    async-statistics: true
+    thread-pool-size: 4
+
+# ========================================
+# MESSAGES
+# ========================================
+messages:
+  # Game messages
+  game:
+    join-success: "&aYou joined the game!"
+    leave-success: "&aYou left the game!"
+    game-start: "&eThe game has started!"
+    game-end: "&cThe game has ended!"
+    countdown: "&e%time% seconds until start!"
+    
+  # Player elimination
+  elimination:
+    eliminated: "&cYou were eliminated!"
+    collision: "&cYou hit a wall!"
+    out-of-bounds: "&cYou went out of bounds!"
+    
+  # Victory messages
+  victory:
+    winner: "&6Congratulations! You won!"
+    top-3: "&eYou finished in the top 3!"
+    participation: "&7Thanks for playing!"
+    
+  # Error messages
+  errors:
+    no-permission: "&cYou don't have permission to do that!"
+    game-full: "&cThe game is full!"
+    already-in-game: "&cYou're already in a game!"
+    no-arena: "&cNo arena available!"
+    arena-not-found: "&cArena not found!"
+    
+  # Admin messages
+  admin:
+    arena-created: "&aArena created successfully!"
+    arena-deleted: "&aArena deleted successfully!"
+    config-reloaded: "&aConfiguration reloaded!"
+    game-started: "&aGame started!"
+    game-stopped: "&aGame stopped!"
+
+# ========================================
+# ADVANCED SETTINGS
+# ========================================
+advanced:
+  # Collision detection
+  collision:
+    precision: "high"  # low, medium, high
+    check-interval: 1   # ticks
+    hitbox-expansion: 0.1
+  
+  # Wall physics
+  physics:
+    gravity-affected: false
+    bounce-walls: false
+    wall-collision: true
+  
+  # Memory management
+  memory:
+    cleanup-frequency: 6000  # ticks (5 minutes)
+    force-gc: false
+    memory-threshold: 0.8

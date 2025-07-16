@@ -1,0 +1,46 @@
+name: HoleInTheWall
+version: 1.0.0
+description: MCC-style Hole in the Wall minigame plugin
+author: HiTW Team
+main: com.hitw.HoleInTheWallPlugin
+api-version: 1.19
+website: https://github.com/your-repo/hole-in-the-wall
+
+depend: []
+softdepend: [Vault, PlaceholderAPI, Citizens, HolographicDisplays, WorldEdit]
+
+commands:
+  hitw:
+    description: Main Hole in the Wall command
+    usage: /<command> [join|leave|stats|info|help]
+    aliases: [holewall, hw]
+  hitwadmin:
+    description: Hole in the Wall admin commands
+    usage: /<command> [reload|create|delete|list|start|stop|forcestart|stats]
+    permission: hitw.admin
+    aliases: [hwa, hitwadm]
+
+permissions:
+  hitw.*:
+    description: All Hole in the Wall permissions
+    children:
+      hitw.use: true
+      hitw.join: true
+      hitw.stats: true
+      hitw.admin: true
+      hitw.bypass: true
+  hitw.use:
+    description: Basic plugin usage
+    default: true
+  hitw.join:
+    description: Join games
+    default: true
+  hitw.stats:
+    description: View statistics
+    default: true
+  hitw.admin:
+    description: Administrative commands
+    default: op
+  hitw.bypass:
+    description: Bypass game restrictions
+    default: op
